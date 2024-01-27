@@ -1,3 +1,8 @@
-from tensorflow.python.keras import layers,models
-    
+"""
+HSK_AI
+main.py
+
+Created by Alexandre BOURDOIS.
+"""
+import tensorflow as tf 
 print("hello")
