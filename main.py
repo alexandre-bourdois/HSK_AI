@@ -43,27 +43,13 @@ model.add(tf.keras.layers.Dense(units=128, activation=tf.nn.relu))
 model.add(tf.keras.layers.Dense(units=128, activation=tf.nn.relu))
 model.add(tf.keras.layers.Dense(units=178, activation=tf.nn.softmax))
 
-
-# mnist= tf.keras.datasets.mnist
-# (x_train, y_train), (x_text,y_test)= mnist.load_data()
-
-# x_train = tf.keras.utils.normalize(x_train, axis=1)
-# x_test = tf.keras.utils.normalize(x_text, axis=1)
-
-
-# model=tf.keras.models.Sequential()
-# model.add(tf.keras.layers.Flatten(input_shape=(28,28)))
-# model.add(tf.keras.layers.Dense(units=128, activation=tf.nn.relu))
-# model.add(tf.keras.layers.Dense(units=128, activation=tf.nn.relu))
-# model.add(tf.keras.layers.Dense(units=10,activation=tf.nn.softmax))
-
 model.compile(optimizer='adam',loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 model.fit(train_generator, epochs=1, validation_data=test_generator)
 
-# accuracy, loss = model.evaluate(x_test, y_test)
-# print(accuracy)
-# print(loss)
+accuracy, loss = model.evaluate(train_generator, test_generator)
+print(accuracy)
+print(loss)
 
 model.save('digits.model')
 
