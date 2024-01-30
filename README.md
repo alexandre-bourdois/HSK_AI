@@ -1,18 +1,15 @@
 # HSK_AI🧧
 
-<br/>
-  TensorFlow-based HSK1 Chinese Character Recognition: A machine learning project for accurate identification and classification of basic Chinese characters. In progress
+TensorFlow-based HSK1 Chinese Character Recognition: A machine learning project for accurate identification and classification of basic Chinese characters. In progress
 
-<br/>
+The database of HSK1 Chinese characters from Artem BORZENKO was used for the creation of the model, here is a link to it: https://www.kaggle.com/code/artemborzenko/chinese-characters-hsk-1-level-recognition
 
-To begin, install TensorFlow by running the following command:
+## Technologies
 
-Start, by installing Tensorflow:
+- Python
+- Tensorflow
+- OpenCV
 
-```sh
-$ pip install tensorflow
-```
-
-# Credits
+# [](https://github.com/alexandre-bourdois/HSK_AI#credits)Credits
 
 - [**Alexandre BOURDOIS**](https://github.com/alexandre-bourdois) : Creator of the project.

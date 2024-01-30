@@ -53,9 +53,12 @@ print(loss)
 
 model.save('digits.model')
 
-# img= cv.imread('1.png')[:,:,0]
-# img= np.invert(np.array([img]))
-# prediction=model.predict(img)
-# print(f'The result is probably:{ np.argmax(prediction)}')
-# plt.imshow(img[0],cmap=plt.cm.binary)
-# plt.show()
+img= cv.imread('bu.png')[:,:,0]
+img= np.invert(np.array([img]))
+
+# loaded_model = tf.keras.models.load_model('digits.model')
+
+prediction = model.predict(img)
+print(f'The result is probably:{ np.argmax(prediction)}')
+plt.imshow(img[0],cmap=plt.cm.binary)
+plt.show()
