@@ -9,3 +9,4 @@ digits.model/keras_metadata.pb
 digits.model/saved_model.pb
 digits.model/variables/variables.data-00000-of-00001
 digits.model/variables/variables.index
+*.py
