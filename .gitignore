@@ -10,3 +10,7 @@ digits.model/saved_model.pb
 digits.model/variables/variables.data-00000-of-00001
 digits.model/variables/variables.index
 *.py
+tempCodeRunnerFile.py
+numbers.model/variables/variables.index
+numbers.model/variables/variables.data-00000-of-00001
+tempCodeRunnerFile.py
