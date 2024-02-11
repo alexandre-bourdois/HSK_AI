@@ -12,16 +12,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def create_model(img_height, img_width, num_classes,train_generator,test_generator):
-    train_generator=tf.keras.utils.normalize(train_generator, axis=1)
-    test_generator=tf.keras.utils.normalize(test_generator, axis=1)
+
     model = tf.keras.models.Sequential([
-        tf.keras.layers.Flatten(input_shape=(img_height, img_width,      1)),
+        tf.keras.layers.Flatten(input_shape=(img_height, img_width, 3)),
         tf.keras.layers.Dense(units=128, activation=tf.nn.relu),
         tf.keras.layers.Dense(units=128, activation=tf.nn.relu),
         tf.keras.layers.Dense(units=num_classes, activation=tf.nn.softmax)
     ])
     model.compile(optimizer='adam',loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-    model.fit(train_generator,validation_data=test_generator, epochs=2 )
+    model.fit(train_generator,validation_data=test_generator, epochs=3 )
     model.save('character.model')
     return model
 
@@ -33,10 +32,10 @@ def load_test_character(img_path):
     return img
 
 #Repertory of the dataset
-train_data_dir = '../dataset_chinese/train'
-test_data_dir = '../dataset_chinese/test'
+train_data_dir = '../dataset_chinese_test/train'
+test_data_dir = '../dataset_chinese_test/test'
 
-sample_size = 32
+sample_size = 64
 img_height, img_width = 67, 67 
 num_classes=178
 
@@ -66,8 +65,7 @@ test_generator = test_data_gen.flow_from_directory(
 model = tf.keras.models.load_model('character.model')
 
 
-img = load_test_character('yi.png')
-
+img = load_test_character('1.png')
 
 prediction = model.predict(img)
 predicted_class_index = np.argmax(prediction)
