@@ -70,6 +70,12 @@ img = load_test_character('1.png')
 prediction = model.predict(img)
 predicted_class_index = np.argmax(prediction)
 predicted_class_name = list(train_generator.class_indices.keys())[predicted_class_index]
-print(f"The predicted character is: {predicted_class_name}")
-plt.imshow(img[0],cmap=plt.cm.binary)
+
+text = f"Predicted character: {predicted_class_name}"
+
+plt.figure(figsize=(6, 6))  
+plt.imshow(img[0], cmap=plt.cm.binary)
+plt.title(text, fontsize=14, color='black', pad=20)  
+plt.axis('off')
+
 plt.show()
