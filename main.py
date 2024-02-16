@@ -10,6 +10,9 @@ import scipy
 import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
+import tkinter as tk
+from tkinter import filedialog, Label, Button
+from PIL import Image, ImageTk
 
 def create_model(img_height, img_width, num_classes,train_generator,test_generator):
 
@@ -30,6 +33,23 @@ def load_test_character(img_path):
     img = np.expand_dims(img, axis=0) 
     img = img / 255.0  
     return img
+
+def predict_character():
+    file_path = filedialog.askopenfilename()
+    if file_path:
+        img = Image.open(file_path)
+        img = img.resize((67, 67))
+        img = np.array(img) / 255.0
+        img = np.expand_dims(img, axis=0)
+        prediction = model.predict(img)
+        predicted_class_index = np.argmax(prediction)
+        predicted_class_name = list(train_generator.class_indices.keys())[predicted_class_index]
+        prediction_label.config(text=f"Predicted character: {predicted_class_name}")
+        img = Image.open(file_path)
+        img.thumbnail((300, 300))
+        img = ImageTk.PhotoImage(img)
+        image_label.configure(image=img)
+        image_label.image = img
 
 #Repertory of the dataset
 train_data_dir = '../dataset_chinese_test/train'
@@ -71,11 +91,28 @@ prediction = model.predict(img)
 predicted_class_index = np.argmax(prediction)
 predicted_class_name = list(train_generator.class_indices.keys())[predicted_class_index]
 
-text = f"Predicted character: {predicted_class_name}"
+# text = f"Predicted character: {predicted_class_name}"
 
-plt.figure(figsize=(6, 6))  
-plt.imshow(img[0], cmap=plt.cm.binary)
-plt.title(text, fontsize=14, color='black', pad=20)  
-plt.axis('off')
+# plt.figure(figsize=(6, 6))  
+# plt.imshow(img[0], cmap=plt.cm.binary)
+# plt.title(text, fontsize=14, color='black', pad=20)  
+# plt.axis('off')
 
-plt.show()
+# plt.show()
+root = tk.Tk()
+root.title("Character Recognition App")
+
+# Bouton pour charger une image et effectuer la prédiction
+load_button = Button(root, text="Load Image", command=predict_character)
+load_button.pack()
+
+# Étiquette pour afficher l'image
+image_label = Label(root)
+image_label.pack()
+
+# Étiquette pour afficher la prédiction
+prediction_label = Label(root, text="")
+prediction_label.pack()
+
+# Lancer la boucle principale Tkinter
+root.mainloop()
