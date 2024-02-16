@@ -84,35 +84,16 @@ test_generator = test_data_gen.flow_from_directory(
 # Load the trained model
 model = tf.keras.models.load_model('character.model')
 
-
-img = load_test_character('1.png')
-
-prediction = model.predict(img)
-predicted_class_index = np.argmax(prediction)
-predicted_class_name = list(train_generator.class_indices.keys())[predicted_class_index]
-
-# text = f"Predicted character: {predicted_class_name}"
-
-# plt.figure(figsize=(6, 6))  
-# plt.imshow(img[0], cmap=plt.cm.binary)
-# plt.title(text, fontsize=14, color='black', pad=20)  
-# plt.axis('off')
-
-# plt.show()
 root = tk.Tk()
-root.title("Character Recognition App")
+root.title("HSK Character Recognition App")
 
-# Bouton pour charger une image et effectuer la prédiction
 load_button = Button(root, text="Load Image", command=predict_character)
 load_button.pack()
 
-# Étiquette pour afficher l'image
 image_label = Label(root)
 image_label.pack()
 
-# Étiquette pour afficher la prédiction
 prediction_label = Label(root, text="")
 prediction_label.pack()
 
-# Lancer la boucle principale Tkinter
 root.mainloop()
