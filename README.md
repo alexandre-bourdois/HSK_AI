@@ -8,7 +8,7 @@ The database of HSK1 Chinese characters from Artem BORZENKO was used for the cre
 
 - Python
 - Tensorflow
-- OpenCV
+- Tkinter
 
 # [](https://github.com/alexandre-bourdois/HSK_AI#credits)Credits
 
