@@ -1,25 +1,8 @@
 
 .vscode/launch.json
 .vscode/tasks.json
-digits.model/fingerprint.pb
 *.pb
-*.pb
-digits.model/saved_model.pb
-digits.model/keras_metadata.pb
-digits.model/saved_model.pb
-digits.model/variables/variables.data-00000-of-00001
-digits.model/variables/variables.index
 *.py
 tempCodeRunnerFile.py
-numbers.model/variables/variables.index
-numbers.model/variables/variables.data-00000-of-00001
-tempCodeRunnerFile.py
-digits.model/variables/variables.data-00000-of-00001
-digits.model/saved_model.pb
-digits.model/keras_metadata.pb
-digits.model/fingerprint.pb
 character.model/variables/variables.index
 character.model/variables/variables.data-00000-of-00001
-digits.model/variables/variables.index
-digits.model/fingerprint.pb
-*.pb

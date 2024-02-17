@@ -46,7 +46,7 @@ def predict_character():
         predicted_class_name = list(train_generator.class_indices.keys())[predicted_class_index]
         prediction_label.config(text=f"Predicted character: {predicted_class_name}")
         img = Image.open(file_path)
-        img.thumbnail((300, 300))
+        img= img.resize((500, 500))
         img = ImageTk.PhotoImage(img)
         image_label.configure(image=img)
         image_label.image = img
