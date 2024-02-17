@@ -37,14 +37,14 @@ def load_test_character(img_path):
 def predict_character():
     file_path = filedialog.askopenfilename()
     if file_path:
-        img = Image.open(file_path)
+        img = Image.open(file_path).convert('RGB')
         img = img.resize((67, 67))
         img = np.array(img) / 255.0
         img = np.expand_dims(img, axis=0)
         prediction = model.predict(img)
         predicted_class_index = np.argmax(prediction)
         predicted_class_name = list(train_generator.class_indices.keys())[predicted_class_index]
-        prediction_label.config(text=f"Predicted character: {predicted_class_name}")
+        prediction_label.config(text=f"Predicted character: {predicted_class_name}", font=("Helvetica", 20))
         img = Image.open(file_path)
         img= img.resize((500, 500))
         img = ImageTk.PhotoImage(img)
@@ -76,7 +76,6 @@ test_generator = test_data_gen.flow_from_directory(
     batch_size=sample_size,
     class_mode='sparse'
 )
-
 
 # Create, compile and save the model
 # model = create_model(img_height, img_width, num_classes,train_generator,test_generator)
