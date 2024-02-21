@@ -16,6 +16,24 @@ import cv2
 from tkinter import filedialog, Label, Button,Canvas
 from PIL import Image, ImageTk
 
+def create_model(img_height, img_width, num_classes, train_generator, test_generator):
+    model = tf.keras.models.Sequential([
+        tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(img_height, img_width, 3)),
+        tf.keras.layers.MaxPooling2D((2, 2)),
+        tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),
+        tf.keras.layers.MaxPooling2D((2, 2)),
+        tf.keras.layers.Conv2D(128, (3, 3), activation='relu'),
+        tf.keras.layers.MaxPooling2D((2, 2)),
+        tf.keras.layers.Flatten(),
+        tf.keras.layers.Dense(units=128, activation=tf.nn.relu),
+        tf.keras.layers.Dropout(0.5),  # Ajout d'une couche de dropout avec un taux de 50%
+        tf.keras.layers.Dense(units=num_classes, activation=tf.nn.softmax)
+    ])
+    
+    model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    model.fit(train_generator, validation_data=test_generator, epochs=10)
+    model.save('character.model')
+    return model
 class DrawingApp:
     def __init__(self, master, predict_function):
         self.master = master
@@ -92,7 +110,7 @@ def predict_character(img):
 train_data_dir = '../dataset_chinese_test/train'
 test_data_dir = '../dataset_chinese_test/test'
 
-sample_size = 64
+sample_size = 500
 img_height, img_width = 67, 67 
 num_classes=178
 
@@ -115,10 +133,10 @@ test_generator = test_data_gen.flow_from_directory(
 )
 
 # Create, compile and save the model
-# model = create_model(img_height, img_width, num_classes,train_generator,test_generator)
+model = create_model(img_height, img_width, num_classes,train_generator,test_generator)
 
 # Load the trained model
-model = tf.keras.models.load_model('character.model')
+# model = tf.keras.models.load_model('character.model')
 
 
 root = tk.Tk()
