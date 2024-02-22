@@ -34,6 +34,7 @@ def create_model(img_height, img_width, num_classes, train_generator, test_gener
     model.fit(train_generator, validation_data=test_generator, epochs=10)
     model.save('character.model')
     return model
+
 class DrawingApp:
     def __init__(self, master, predict_function):
         self.master = master
@@ -50,6 +51,15 @@ class DrawingApp:
 
         self.predict_button = Button(self.master, text="Predict", command=self.predict_character)
         self.predict_button.pack()
+
+        self.save_button = Button(self.master, text="Save", command=self.save_image)
+        self.save_button.pack()
+    
+    def save_image(self):
+        image = self.get_image()
+        file_path = filedialog.asksaveasfilename(defaultextension=".png")
+        if file_path:
+            cv2.imwrite(file_path, image)
 
     def setup_bindings(self):
         self.canvas.bind("<B1-Motion>", self.draw)
@@ -110,9 +120,9 @@ def predict_character(img):
 train_data_dir = '../dataset_chinese_test/train'
 test_data_dir = '../dataset_chinese_test/test'
 
-sample_size = 500
+sample_size = 600
 img_height, img_width = 67, 67 
-num_classes=178
+num_classes=5
 
 #Generate characters
 train_data_gen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
@@ -133,10 +143,10 @@ test_generator = test_data_gen.flow_from_directory(
 )
 
 # Create, compile and save the model
-model = create_model(img_height, img_width, num_classes,train_generator,test_generator)
+#model = create_model(img_height, img_width, num_classes,train_generator,test_generator)
 
 # Load the trained model
-# model = tf.keras.models.load_model('character.model')
+model = tf.keras.models.load_model('character.model')
 
 
 root = tk.Tk()
