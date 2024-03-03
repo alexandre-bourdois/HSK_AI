@@ -14,6 +14,6 @@ The database of HSK1 Chinese characters from Artem BORZENKO was used for the cre
 - Tensorflow
 - Tkinter
 
-# [](https://github.com/alexandre-bourdois/HSK_AI#credits)Credits
+## [](https://github.com/alexandre-bourdois/HSK_AI#credits)Credits
 
 - [**Alexandre BOURDOIS**](https://github.com/alexandre-bourdois) : Creator of the project.
