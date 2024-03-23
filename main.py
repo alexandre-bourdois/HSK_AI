@@ -26,7 +26,7 @@ def create_model(img_height, img_width, num_classes, train_generator, test_gener
         tf.keras.layers.MaxPooling2D((2, 2)),
         tf.keras.layers.Flatten(),
         tf.keras.layers.Dense(units=128, activation=tf.nn.relu),
-        tf.keras.layers.Dropout(0.5),  # Ajout d'une couche de dropout avec un taux de 50%
+        tf.keras.layers.Dropout(0.5), 
         tf.keras.layers.Dense(units=num_classes, activation=tf.nn.softmax)
     ])
     
